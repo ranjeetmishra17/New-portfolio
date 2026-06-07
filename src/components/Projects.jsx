@@ -47,7 +47,11 @@ const PROJECTS_DATA = [
     metrics: "115K Views · Finance Hook",
     software: ["Premiere Pro", "Audition"]
   }
-];
+].map(p => ({
+  ...p,
+  thumbnail: `${import.meta.env.BASE_URL}${p.thumbnail.startsWith('/') ? p.thumbnail.slice(1) : p.thumbnail}`,
+  videoUrl: `${import.meta.env.BASE_URL}${p.videoUrl.startsWith('/') ? p.videoUrl.slice(1) : p.videoUrl}`
+}));
 
 const total = PROJECTS_DATA.length;
 

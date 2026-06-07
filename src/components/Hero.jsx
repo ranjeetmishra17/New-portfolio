@@ -45,7 +45,7 @@ export default function Hero() {
           <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div className="hero-portrait-frame" onClick={() => setShowreelOpen(true)}>
               <img
-                src="/profile_editor.png"
+                src={`${import.meta.env.BASE_URL}profile_editor.png`}
                 alt="Ranjeet - Video Editor Portrait"
                 className="hero-portrait-img"
               />

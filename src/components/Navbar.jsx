@@ -43,7 +43,7 @@ export default function Navbar() {
           
           {/* Avatar Profile Link (Left) */}
           <a href="#" className="nav-avatar-wrapper" onClick={() => setMobileMenuOpen(false)}>
-            <img src="/profile_editor.png" alt="Ranjeet Profile" className="nav-avatar" />
+            <img src={`${import.meta.env.BASE_URL}profile_editor.png`} alt="Ranjeet Profile" className="nav-avatar" />
             <span className="nav-logo-text">RANJEET</span>
           </a>
 
