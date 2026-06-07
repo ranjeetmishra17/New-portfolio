@@ -136,19 +136,19 @@ function mod(n, m) {
     const abs = Math.abs(offset);
 
     if (abs === 0) {
-      // Center card — full size
+      // Center card — full size (scaled up to stand out)
       return {
-        transform: 'translateX(0) scale(1)',
+        transform: 'translateX(0) scale(var(--card-scale-0, 1.15))',
         filter: 'none',
         opacity: 1,
         zIndex: 10,
         pointerEvents: 'auto',
       };
     } else if (abs === 1) {
-      // ±1 side cards — slightly narrower, but nearly full height
+      // ±1 side cards — slightly narrower, scaled down
       const sign = offset < 0 ? -1 : 1;
       return {
-        transform: `translateX(calc(var(--card-shift-1, 68%) * ${sign})) scaleX(var(--card-scale-x-1, 0.90)) scaleY(var(--card-scale-y-1, 1.04))`,
+        transform: `translateX(calc(var(--card-shift-1, 68%) * ${sign})) scaleX(var(--card-scale-x-1, 0.85)) scaleY(var(--card-scale-y-1, 0.92))`,
         filter: 'blur(1px) brightness(0.72)',
         opacity: 0.88,
         zIndex: 5,
@@ -156,10 +156,10 @@ function mod(n, m) {
         cursor: 'pointer',
       };
     } else {
-      // ±2 outer cards — more narrowed, still tall
+      // ±2 outer cards — more narrowed, scaled down further
       const sign = offset < 0 ? -1 : 1;
       return {
-        transform: `translateX(calc(var(--card-shift-2, 128%) * ${sign})) scaleX(var(--card-scale-x-2, 0.78)) scaleY(var(--card-scale-y-2, 0.96))`,
+        transform: `translateX(calc(var(--card-shift-2, 128%) * ${sign})) scaleX(var(--card-scale-x-2, 0.72)) scaleY(var(--card-scale-y-2, 0.80))`,
         filter: 'blur(2px) brightness(0.55)',
         opacity: 0.65,
         zIndex: 3,

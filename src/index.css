@@ -22,12 +22,13 @@
   --shadow-dark-card: 0 20px 50px rgba(0, 0, 0, 0.4);
 
   /* Coverflow Spacing Spans */
+  --card-scale-0: 1.15;
   --card-shift-1: 68%;
   --card-shift-2: 128%;
-  --card-scale-x-1: 0.90;
-  --card-scale-y-1: 1.04;
-  --card-scale-x-2: 0.78;
-  --card-scale-y-2: 0.96;
+  --card-scale-x-1: 0.85;
+  --card-scale-y-1: 0.92;
+  --card-scale-x-2: 0.72;
+  --card-scale-y-2: 0.80;
 }
 
 /* Base styles */
@@ -1432,12 +1433,13 @@ body {
     width: 275px;
   }
   :root {
+    --card-scale-0: 1.12;
     --card-shift-1: 58%;
     --card-shift-2: 110%;
-    --card-scale-x-1: 0.88;
-    --card-scale-y-1: 1.02;
-    --card-scale-x-2: 0.74;
-    --card-scale-y-2: 0.90;
+    --card-scale-x-1: 0.82;
+    --card-scale-y-1: 0.88;
+    --card-scale-x-2: 0.68;
+    --card-scale-y-2: 0.76;
   }
 }
 
@@ -1452,12 +1454,13 @@ body {
     width: 330px; /* Super maximized card width from 280px to 330px */
   }
   :root {
+    --card-scale-0: 1.08;
     --card-shift-1: 46%;
     --card-shift-2: 88%;
-    --card-scale-x-1: 0.82;
-    --card-scale-y-1: 0.96;
-    --card-scale-x-2: 0.66;
-    --card-scale-y-2: 0.82;
+    --card-scale-x-1: 0.76;
+    --card-scale-y-1: 0.82;
+    --card-scale-x-2: 0.60;
+    --card-scale-y-2: 0.70;
   }
   .coverflow-header {
     flex-direction: column;
@@ -1478,12 +1481,13 @@ body {
     width: 280px; /* Super maximized card width from 230px to 280px */
   }
   :root {
+    --card-scale-0: 1.06;
     --card-shift-1: 42%;
     --card-shift-2: 80%;
-    --card-scale-x-1: 0.76;
-    --card-scale-y-1: 0.88;
-    --card-scale-x-2: 0.60;
-    --card-scale-y-2: 0.76;
+    --card-scale-x-1: 0.72;
+    --card-scale-y-1: 0.78;
+    --card-scale-x-2: 0.56;
+    --card-scale-y-2: 0.66;
   }
 }
 
