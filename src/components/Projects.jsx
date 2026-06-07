@@ -64,6 +64,11 @@ function mod(n, m) {
   const [direction, setDirection] = useState(null); // 'left' | 'right'
   const videoRef = useRef(null);
 
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndX = useRef(0);
+  const touchEndY = useRef(0);
+
   const prev = useCallback(() => {
     setDirection('left');
     setActiveIndex(i => mod(i - 1, total));
@@ -78,6 +83,32 @@ function mod(n, m) {
     setDirection(idx > activeIndex ? 'right' : 'left');
     setActiveIndex(idx);
   }, [activeIndex]);
+
+  const handleTouchStart = useCallback((e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchStartY.current = e.targetTouches[0].clientY;
+    touchEndX.current = e.targetTouches[0].clientX;
+    touchEndY.current = e.targetTouches[0].clientY;
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+    touchEndY.current = e.targetTouches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    const diffX = touchStartX.current - touchEndX.current;
+    const diffY = touchStartY.current - touchEndY.current;
+    const threshold = 50;
+
+    if (Math.abs(diffX) > threshold && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      if (diffX > 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+  }, [next, prev]);
 
   // Programmatically trigger play with catch to handle browser autoplay policies robustly
   useEffect(() => {
@@ -153,26 +184,37 @@ function mod(n, m) {
               PROJECT WORKS
             </h2>
           </div>
-          <div className="carousel-nav-arrows">
-            <button
-              className="carousel-arrow"
-              onClick={prev}
-              aria-label="Previous"
-            >
-              <ArrowLeft size={18} />
-            </button>
-            <button
-              className="carousel-arrow"
-              onClick={next}
-              aria-label="Next"
-            >
-              <ArrowRight size={18} />
-            </button>
-          </div>
         </div>
 
         {/* Coverflow Stage */}
-        <div className="coverflow-stage">
+        <div 
+          className="coverflow-stage"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Desktop Navigation Buttons (Transparent, hidden on mobile) */}
+          <button
+            className="coverflow-nav-btn coverflow-nav-btn--prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            aria-label="Previous Project"
+          >
+            <ArrowLeft size={24} />
+          </button>
+          <button
+            className="coverflow-nav-btn coverflow-nav-btn--next"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            aria-label="Next Project"
+          >
+            <ArrowRight size={24} />
+          </button>
+
           <div className="coverflow-track">
             {visibleSlots.map((offset) => {
               const dataIndex = mod(activeIndex + offset, total);
